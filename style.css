@@ -1,3 +1,4 @@
+/* General Layout */
 * {
   box-sizing: border-box;
   padding: 0;
@@ -8,16 +9,15 @@ body {
   background-color: #003731;
   width: 100%;
   height: 100vh;
-  /* overflow: hidden; */
-  display: flex;
-  flex-direction: column;
+  overflow: hidden;
 }
+/* Text Box */
 textarea {
   border-bottom: 5px solid #264f4c;
-  height: 40%;
+  height: 350px;
   width: 100%;
-  padding: 10px;
-  font-size: 16px;
+  padding: 20px;
+  font-size: 26px;
   resize: none;
   outline: none;
 }
@@ -27,16 +27,23 @@ textarea::placeholder {
   padding-top: 15vh;
   font-family: monospace, sans-serif;
 }
+/* KeyBoard container */
 .container {
-  height: 60%;
+  position: absolute;
+  bottom: 0;
   width: 100%;
+  height: 600px;
+  display: flex;
+  flex-flow: column nowrap;
 }
+/* Edit all 5 rows */
 .row {
-  height: 20%;
+  height: 120px;
   width: 100%;
   display: flex;
   justify-content: center;
 }
+/* All Buttons */
 button {
   background-color: #264f4c;
   width: 100px;
@@ -55,14 +62,10 @@ button:hover {
 button:active {
   border: 5px inset #264f4c;
 }
-#backspace {
-  width: 200px;
-}
+/* Individual Buttons */
+#backspace,
 #enter {
-  transform: rotateZ(90deg); /* Because of the icon */
-  height: 200px; /* height == width due to rotation */
-  align-self: center;
-  margin-left: 55px;
+  width: 200px;
 }
 #space-bar {
   width: 600px;
@@ -71,6 +74,7 @@ button:active {
   position: relative;
   width: 130px;
 }
+/* Caps Lock On/Off Indicator*/
 #caps > div {
   background-color: #003731;
   width: 10px;
@@ -80,6 +84,162 @@ button:active {
   top: 15px;
   right: 15px;
 }
+/* Will toggle this class in JS when caps lock is ON */
 .caps-locked {
   background-color: #08cc43;
+}
+
+@media (max-width: 1390px) {
+  /* Text box */
+  textarea {
+    /* height: 350px; */
+  }
+  /* Keyboard container */
+  .container {
+    height: 500px;
+    justify-content: space-around;
+    margin-top: 70px;
+  }
+  /* Edit all 5 rows */
+  .row {
+    height: fit-content;
+  }
+  /* All buttons */
+  button {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@media (max-width: 1110px) {
+  textarea {
+    border-bottom: none;
+  }
+  .container {
+    height: 450px;
+    justify-content: space-around;
+  }
+  button {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+  }
+  /* Individual Buttons */
+  #backspace,
+  #enter {
+    width: 100px;
+  }
+  #space-bar {
+    width: 400px;
+  }
+  #caps {
+    position: relative;
+    width: 100px;
+  }
+}
+
+@media (max-width: 850px) {
+  .container {
+    height: 350px;
+    justify-content: space-around;
+  }
+  button {
+    width: 40px;
+    height: 45px;
+    font-size: 18px;
+  }
+  /* Individual Buttons */
+  #backspace,
+  #enter {
+    width: 80px;
+  }
+  #space-bar {
+    width: 350px;
+  }
+  #caps {
+    position: relative;
+    width: 80px;
+  }
+  #caps > div {
+    top: 6px;
+    right: 6px;
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 375px) {
+  body {
+    position: relative;
+  }
+  .container {
+    height: 190px;
+    border: 1px solid red;
+    min-width: 320px;
+    margin: auto;
+    background-color: #102c2a;
+  }
+  textarea {
+    height: 400px;
+  }
+  .row {
+    height: 36px;
+    width: 100%;
+  }
+
+  button {
+    background-color: #1b3d3b;
+    border: none;
+    border-radius: 5px;
+    margin: 6px 3px;
+    width: 25px;
+    height: 30px;
+    font-size: 15px;
+    box-shadow: none;
+  }
+  /* Mobile keyboard main diff buttons */
+  #backspace,
+  #enter,
+  #caps,
+  #space-bar,
+  #period,
+  #comma,
+  #question-mark {
+    position: absolute;
+    width: 40px;
+    height: 28px;
+    bottom: 0px;
+  }
+  /* Individual Buttons */
+  #backspace {
+    right: 30px;
+    bottom: 32px;
+  }
+  #enter {
+    bottom: 0;
+    right: 30px;
+  }
+  #space-bar {
+    width: 140px;
+  }
+  #caps {
+    left: 30px;
+    bottom: 32px;
+  }
+  #caps > div {
+    top: 2px;
+    right: 2px;
+    width: 5px;
+    height: 5px;
+  }
+  #comma {
+    left: 78px;
+    width: 25px;
+    height: 26px;
+  }
+  #period {
+    right: 78px;
+    width: 25px;
+    height: 26px;
+  }
 }
