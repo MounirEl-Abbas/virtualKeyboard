@@ -85,8 +85,8 @@ button:active {
   top: 15px;
   right: 15px;
 }
-/* Will toggle this class in JS when caps lock is ON */
-.caps-locked {
+/* Will toggle caps-locked class in JS when caps lock is ON */
+#caps > div.caps-locked {
   background-color: #08cc43;
 }
 
