@@ -6,7 +6,9 @@ const backspaceBtn = document.getElementById('backspace')
 const enterBtn = document.getElementById('enter')
 const spaceBarBtn = document.getElementById('space-bar')
 const capsBtn = document.getElementById('caps')
+const capsLockSignal = document.querySelector('#caps > div')
 
+let recordedText = []
 
 /************ Adding Event Listerners to Keyboard buttons **************/
 window.addEventListener("DOMContentLoaded", addBtnListeners)
@@ -25,6 +27,7 @@ function addBtnListeners(){
 // When a button is clicked, add the textContent to textarea
 function displayKeyClicked(e){
   let btnClicked = e.target.textContent
+  recordedText.push(btnClicked)
   textArea.innerHTML += btnClicked
 }
 /**********************************************************************/
@@ -37,15 +40,41 @@ capsBtn.addEventListener('click', capsLock)
 
 // Backspace button logic
 function backspace(){
+  recordedText.pop()                //Remove last inserted item in array
+  textArea.innerHTML = ''           //Clear text area
+  for (let i = 0; i < recordedText.length; i++){
+    textArea.innerHTML += recordedText[i]   //Repopulate textarea with array
+  }
+
 }
 // Space button logic
 function addSpace(){
-}
+  recordedText.push(' ')
+  textArea.innerHTML += ' '}
+
 // Enter button logic
 function enterNewLine(){
+  recordedText.push('\n')
+  textArea.innerHTML += '\n'
 }
 // Caps lock button logic
 function capsLock(){
+  if(capsLockSignal.classList.contains('caps-locked')){ //If caps lock ON, turn OFF
+    capsLockSignal.classList.toggle('caps-locked')
+    for (let button of allButtons) {
+      if(button.id !== 'caps'){    //Ignore caps - messes with child div
+        button.innerHTML = button.innerHTML.toLowerCase()
+      }
+    }
+
+  }else{                                                //if caps lock OFF, turn ON
+    capsLockSignal.classList.toggle('caps-locked')
+    for (let button of allButtons) {
+      if(button.id !== 'caps'){   //Ignore caps - messes with child div
+        button.innerHTML = button.innerHTML.toUpperCase()
+      }
+    }
+  }
 }
 
 
