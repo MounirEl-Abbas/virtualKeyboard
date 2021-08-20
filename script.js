@@ -33,20 +33,11 @@ function displayKeyClicked(e){
 /**********************************************************************/
 
 /****************Functional Buttons' functions*******************/
-backspaceBtn.addEventListener('click', backspace)
 spaceBarBtn.addEventListener('click', addSpace)
 enterBtn.addEventListener('click', enterNewLine)
+backspaceBtn.addEventListener('click', backspace)
 capsBtn.addEventListener('click', capsLock)
 
-// Backspace button logic
-function backspace(){
-  recordedText.pop()                //Remove last inserted item in array
-  textArea.innerHTML = ''           //Clear text area
-  for (let i = 0; i < recordedText.length; i++){
-    textArea.innerHTML += recordedText[i]   //Repopulate textarea with array
-  }
-
-}
 // Space button logic
 function addSpace(){
   recordedText.push(' ')
@@ -57,6 +48,16 @@ function enterNewLine(){
   recordedText.push('\n')
   textArea.innerHTML += '\n'
 }
+
+// Backspace button logic
+function backspace(){
+  recordedText.pop()                //Remove last inserted item in array
+  textArea.innerHTML = ''           //Clear text area
+  for (let i = 0; i < recordedText.length; i++){
+    textArea.innerHTML += recordedText[i]   //Repopulate textarea with array
+  }
+}
+
 // Caps lock button logic
 function capsLock(){
   if(capsLockSignal.classList.contains('caps-locked')){ //If caps lock ON, turn OFF
@@ -76,7 +77,5 @@ function capsLock(){
     }
   }
 }
-
-
 
 /**********************************************************************/
